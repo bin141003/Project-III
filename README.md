@@ -1,107 +1,213 @@
-# Project Demo
+# 🛒 WEB Bán đồ công nghệ
 
-[![Alt text](https://img.youtube.com/vi/lXk14qt2D28/0.jpg)](https://www.youtube.com/watch?v=lXk14qt2D28)
 
-## Getting Started
+## 📌 Introduction
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Đây là hệ thống **Bán đồ công nghệ** được xây dựng bằng:
 
-### Prerequisites
+* **Frontend:** ReactJS
+* **Backend:** Node.js + Express
+* **Database:** MongoDB
+* **Payment:** Braintree Sandbox
 
-NPM / Yarn and Node.js installed
+Các chức năng chính:
 
-### .env
+* Đăng ký / Đăng nhập
+* Xem danh sách sản phẩm
+* Xem chi tiết sản phẩm
+* Thêm vào giỏ hàng
+* Thanh toán online (Braintree)
+* Quản lý sản phẩm (Admin)
 
-In the server > .env file, you can find some information. Please use your own API key for future use, as this key may not work in the future.
+---
 
+## ⚙️ Prerequisites
+
+Cài đặt trước:
+
+* Node.js (Node 16 hoặc 18)
+* MongoDB (local hoặc MongoDB Atlas)
+* NPM hoặc Yarn
+
+Kiểm tra:
+
+```bash
+node -v
+npm -v
 ```
-BRAINTREE_MERCHANT_ID=your_id
+
+---
+
+## 🔑 Environment Variables (.env)
+
+Tạo file `.env` trong thư mục **server**
+
+```bash
+DATABASE=mongodb://127.0.0.1:27017/ecommerce
+
+BRAINTREE_MERCHANT_ID=your_merchant_id
 BRAINTREE_PUBLIC_KEY=your_public_key
 BRAINTREE_PRIVATE_KEY=your_private_key
 ```
 
-### 🔑 Getting Braintree API Keys
+---
 
-To enable payment functionality, you need to configure your own Braintree API credentials.
+## 🔑 Getting Braintree API Keys
 
-#### Steps to get your Braintree API keys
+Để bật chức năng thanh toán:
 
-1. Go to the official Braintree website: [https://www.braintreepayments.com/](https://www.braintreepayments.com/)
-2. Create a **free Sandbox account** at [https://sandbox.braintreegateway.com/](https://sandbox.braintreegateway.com/)
-3. After logging in, navigate to:  
-   **Account → Settings → API → API Keys**
-4. Click **“Generate New API Key”** if none exists.
-5. Copy your credentials:
-   - **Merchant ID**
-   - **Public Key**
-   - **Private Key**
-6. Add them to your `.env` file (inside the `server` folder):
+### Các bước:
 
-   ```bash
-   BRAINTREE_MERCHANT_ID=your_merchant_id_here
-   BRAINTREE_PUBLIC_KEY=your_public_key_here
-   BRAINTREE_PRIVATE_KEY=your_private_key_here
-   ```
+1. Truy cập:
 
-### Installing
+https://www.braintreepayments.com/
 
-Installing NPM modules on both client and server folders
+2. Tạo tài khoản Sandbox:
 
-Execute these commands from the project directory
+https://sandbox.braintreegateway.com/
+
+3. Sau khi login:
 
 ```
-cd client && npm install
+Account → Settings → API → API Keys
 ```
 
-```
-cd server && npm install
+4. Copy:
+
+* Merchant ID
+* Public Key
+* Private Key
+
+5. Dán vào `.env`
+
+Ví dụ:
+
+```bash
+BRAINTREE_MERCHANT_ID=abc123
+BRAINTREE_PUBLIC_KEY=xyz456
+BRAINTREE_PRIVATE_KEY=secret789
 ```
 
-### Running the app
+---
 
-Open a terminal on server directory
+## 📦 Installation
 
+Cài dependencies cho **client**
+
+```bash
+cd client
+npm install
 ```
+
+Cài dependencies cho **server**
+
+```bash
+cd server
+npm install
+```
+
+---
+
+## ▶️ Running the Project
+
+### Start backend
+
+```bash
+cd server
 npm run start:dev
 ```
 
-and open another terminal on client directory
+---
 
-```
+### Start frontend
+
+Mở terminal mới:
+
+```bash
+cd client
 npm run start
 ```
 
-Access the web app at http://localhost:3000/
+---
 
-### Deploying the backend server to render
+### Truy cập:
 
-Follow these setps 👇👇
+```
+http://localhost:3000
+```
 
-1. Create your render account in https://render.com/
-2. Connect your github to render and give the project permission for that
-3. Then create a new Web Service and add your repo (your repo must be look like this repo's folder structure like frontend and backend both in that repo)
-4. For deploying this, every change will be in this `render-deploy-backend` branch. So don't change your `.evn` from master branch.
-5. You have to change your database to local to mongodb atlas. Because in this deployment we are not creating db server. So we will be using mongo atlas url. So find your mongodb cloud url with database which will look like this: `mongodb+srv://myusername:myclusterpassword@mycluster.mongodb.net/ecommerce?retryWrites=true&w=majority`
-   and
-   <b>goto the `render-deploy-backend` branch</b>
-   and goto `.env` file and replace the first variable to your latest mongodb cloud url like this:
-   `DATABASE=mongodb+srv://myusername:myclusterpassword@mycluster.mongodb.net/ecommerce?retryWrites=true&w=majority`
-   Don't just put this url. Your url will be different. You will find it in your mongo cluster setting.
-   The old variable will be like this: `DATABASE=mongodb://127.0.0.1:27017/ecommerce
-` and your new one should look like this:
-   `DATABASE=mongodb+srv://myusername:myclusterpassword@mycluster.mongodb.net/ecommerce?retryWrites=true&w=majority`
-   you can find the mongo url by goto the mongodb atlas website and goto your database and you can find a connect button and click on that you will see the url. And modify the url quite like my one with your secret info.
-   N.B: And you must need to provide the cluster password not your account password! So find your cluster password from database access menu in mongodb atlast cloud and change accoding to you. Here I provide all image's that you can undarstand better
-   ![Alt Text](assetREADME.md/atlasUrl.png)
-   ![Alt Text](assetREADME.md/clusterPassword.png)
-   ![Alt Text](assetREADME.md/networkAccess.png)
+---
 
-6. Then come to render website. Give all of the imformations I set in the image below just change the name of your project and then must be change the branch name to `master` to `render-deploy-backend`
+## ☁️ Deploy Backend to Render
 
-7. This is the setup for render
-   ![Alt Text](assetREADME.md/renderDeployBackendSetup.png)
+### Bước 1 — Tạo tài khoản Render
 
-8. After all the setup you finished create the web service and It will deploy the project.
+https://render.com/
 
-You can deploy frontend into vercel or netlify also. Thanks
+---
 
+### Bước 2 — Kết nối GitHub
+
+Cho phép Render truy cập repo.
+
+---
+
+### Bước 3 — Tạo Web Service
+
+Chọn repo của bạn.
+
+---
+
+### Bước 4 — Sử dụng MongoDB Atlas
+
+Lấy MongoDB URL dạng:
+
+```bash
+mongodb+srv://username:password@cluster.mongodb.net/ecommerce
+```
+
+Thay vào `.env`:
+
+```bash
+DATABASE=mongodb+srv://username:password@cluster.mongodb.net/ecommerce
+```
+
+---
+
+### Bước 5 — Deploy
+
+Render sẽ tự build và chạy server.
+
+---
+
+## 🌐 Deploy Frontend
+
+Bạn có thể dùng:
+
+* Vercel
+* Netlify
+
+---
+
+## 📁 Project Structure
+
+```
+project-root/
+│
+├── client/        # React frontend
+│
+├── server/        # Node.js backend
+│
+├── README.md
+│
+└── .gitignore
+```
+
+---
+
+## 👨‍💻 Author
+
+**Name:** Trịnh Văn Bin
+**Student ID:** 20215530
+
+---
